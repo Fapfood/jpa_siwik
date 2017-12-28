@@ -10,34 +10,27 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
-public class Supplier {
+//@SecondaryTable(name="ADDRESS_TABLE")
+public class Supplier extends Company {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+//    @Id
+//    @GeneratedValue
+//    private Long id;
 
-    private String companyName;
+//    private String companyName;
 
-    private String street;
+//    @Column(table = "ADDRESS_TABLE")
+//    private String street;
 
-    private String city;
+//    @Column(table = "ADDRESS_TABLE")
+//    private String city;
+
+//    @Embedded
+//    private Address address;
+
+    private String bankAccountNumber;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "isSuppliedBy")
 //    @JoinColumn(name="SUPPLIER")
     private Set<Product> supplies;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Supplier supplier = (Supplier) o;
-        return Objects.equals(getCompanyName(), supplier.getCompanyName());
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(super.hashCode(), getCompanyName());
-    }
 }

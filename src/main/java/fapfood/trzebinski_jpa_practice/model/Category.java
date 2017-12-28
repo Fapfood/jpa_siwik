@@ -12,13 +12,12 @@ import java.util.Set;
 public class Category {
 
     @Id
-//    @GeneratedValue
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
 
     private String categoryName;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CATEGORY")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+//    @JoinColumn(name = "CATEGORY")
     private Set<Product> products;
 }

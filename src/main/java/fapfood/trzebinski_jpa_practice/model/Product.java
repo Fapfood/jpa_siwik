@@ -21,10 +21,14 @@ public class Product {
     private Integer unitsInStock;
 
     @ManyToOne
+//    @JoinColumn(name = "CATEGORY")
+    private Category category;
+
+    @ManyToOne
 //    @JoinColumn(name="SUPPLIER")
     private Supplier isSuppliedBy;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "sales", cascade = CascadeType.PERSIST)
     private Set<BusinessTransaction> canBeSoldOn;
 
     @Override
