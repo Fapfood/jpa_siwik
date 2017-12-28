@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -77,7 +78,9 @@ public class TrzebinskiJpaPracticeApplication {
             c1.setProducts(productSet);
 
             BusinessTransaction t1 = new BusinessTransaction();
+            t1.setDate(LocalDate.of(2016, 8, 12));
             BusinessTransaction t2 = new BusinessTransaction();
+            t2.setDate(LocalDate.of(2016, 8, 13));
 
             t1.setSales(productSet);
             t2.setSales(productSet);
@@ -113,6 +116,7 @@ public class TrzebinskiJpaPracticeApplication {
             businessTransactionSet2.add(t3);
 
             t3.setSales(productSet2);
+            t3.setDate(LocalDate.of(2016, 8, 14));
             p3.setCanBeSoldOn(businessTransactionSet2);
             productRepository.save(p3);
 

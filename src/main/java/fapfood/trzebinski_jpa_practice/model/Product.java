@@ -45,4 +45,9 @@ public class Product {
 
         return Objects.hash(super.hashCode(), getProductName());
     }
+
+    @Override
+    public String toString() {
+        return id.toString();
+    }
 }

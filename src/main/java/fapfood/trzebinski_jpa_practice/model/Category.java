@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -20,4 +21,9 @@ public class Category {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
 //    @JoinColumn(name = "CATEGORY")
     private Set<Product> products;
+
+    @Override
+    public String toString() {
+        return id.toString();
+    }
 }

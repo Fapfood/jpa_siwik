@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Entity
-@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Company {
 
     @Id
@@ -21,4 +21,9 @@ public abstract class Company {
     private String street;
 
     private String city;
+
+    @Override
+    public String toString() {
+        return id.toString();
+    }
 }

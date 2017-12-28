@@ -33,4 +33,9 @@ public class Supplier extends Company {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "isSuppliedBy")
 //    @JoinColumn(name="SUPPLIER")
     private Set<Product> supplies;
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

@@ -11,4 +11,9 @@ import javax.persistence.Entity;
 public class Customer extends Company {
 
     private Double discount;
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

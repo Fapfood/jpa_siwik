@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Data
@@ -15,6 +16,13 @@ public class BusinessTransaction {
     @GeneratedValue
     private Long id;
 
+    private LocalDate date;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Product> sales;
+
+    @Override
+    public String toString() {
+        return id.toString();
+    }
 }
