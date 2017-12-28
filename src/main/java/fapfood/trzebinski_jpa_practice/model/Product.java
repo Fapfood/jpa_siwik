@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -22,6 +23,9 @@ public class Product {
     @ManyToOne
 //    @JoinColumn(name="SUPPLIER")
     private Supplier isSuppliedBy;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<BusinessTransaction> canBeSoldOn;
 
     @Override
     public boolean equals(Object o) {
