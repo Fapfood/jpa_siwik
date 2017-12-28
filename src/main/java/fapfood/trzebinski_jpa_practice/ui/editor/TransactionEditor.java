@@ -6,11 +6,13 @@ import com.vaadin.spring.annotation.UIScope;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.TextField;
 import fapfood.trzebinski_jpa_practice.model.BusinessTransaction;
+import fapfood.trzebinski_jpa_practice.model.Product;
 import fapfood.trzebinski_jpa_practice.repository.BusinessTransactionRepository;
+import fapfood.trzebinski_jpa_practice.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.ZoneId;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringComponent
 @UIScope
@@ -18,6 +20,9 @@ public class TransactionEditor extends AbstractEditor {
 
     @Autowired
     private BusinessTransactionRepository repository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     private BusinessTransaction object;
 
@@ -32,6 +37,16 @@ public class TransactionEditor extends AbstractEditor {
 
         addComponents(date, sales, actions);
         binder.bind(date, BusinessTransaction::getDate, BusinessTransaction::setDate);
+        binder.forField(sales).bind(businessTransaction -> businessTransaction.getSales().toString(),
+                (businessTransaction, s) -> {
+                    Set<Product> productSet = new HashSet<>();
+                    for (String str : s.substring(1, s.length() - 1).split(", ")) {
+                        Long id = Long.parseLong(str);
+                        Product product = productRepository.findOne(id);
+                        productSet.add(product);
+                    }
+                    businessTransaction.setSales(productSet);
+                });
 
         // wire action buttons to save, delete and reset
         save.addClickListener(e -> repository.save(object));
